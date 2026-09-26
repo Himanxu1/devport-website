@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DevPort: see every port on your Mac</title>
+<meta name="description" content="DevPort lives in your Mac's menu bar and shows what's running on every port: the project, the framework, the process. Stop or restart it in one click. $3.50 once.">
+<meta property="og:title" content="DevPort: see every port on your Mac">
+<meta property="og:description" content="Port 3000 is taken again. DevPort tells you by what and frees it in one click. A $3.50 Mac menu-bar app.">
+<meta property="og:image" content="/assets/ports-list.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0A0E1A">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"DevPort","operatingSystem":"macOS 13 or later","applicationCategory":"DeveloperApplication","offers":{"@type":"Offer","price":"3.50","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+
+<nav id="nav"><div class="wrap">
+  <a class="brand" href="/"><img src="/assets/icon.png" alt="">DevPort</a>
+  <div class="links">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a class="btn btn-primary btn-sm" data-buy href="https://checkout.dodopayments.com/buy/pdt_0NoQZXsQrLCafVXr53l5H">Buy <span class="price">$3.50</span></a>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <div>
+    <h1>See every port on your Mac. <em>Free it in one click.</em></h1>
+    <p class="sub">DevPort lives in your menu bar and shows what's running on every localhost port: which project started it, what framework it is, and whether it's safe to stop.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" data-buy href="https://checkout.dodopayments.com/buy/pdt_0NoQZXsQrLCafVXr53l5H">Buy DevPort <span class="price">$3.50 once</span></a>
+      <a class="btn btn-ghost" href="#features">See how it works</a>
+    </div>
+    <div class="meta">
+      <span>One-time payment</span><span>Apple silicon and Intel</span><span>macOS 13 or later</span>
+    </div>
+    <p class="already">Already bought it? <a href="/DevPort.dmg" download>Download DevPort</a> and paste your key.</p>
+  </div>
+  <div class="shot">
+    <div class="menubar-strip" aria-hidden="true">
+      <span>Wi-Fi</span>
+      <b><svg viewBox="0 0 16 16" fill="currentColor"><path d="M9 1.5a.75.75 0 0 1 1.5 0V4h1.25a.75.75 0 0 1 0 1.5H10.5V7h1.25a.75.75 0 0 1 0 1.5H10.5v.25A3.75 3.75 0 0 1 7.5 12.4V14.5a.75.75 0 0 1-1.5 0v-2.1A3.75 3.75 0 0 1 3 8.75V5.5a.75.75 0 0 1 .75-.75H9z"/></svg>8</b>
+      <span>Fri 14:08</span>
+    </div>
+    <img src="/assets/ports-list.png" width="446" height="606" alt="DevPort's menu-bar window listing 8 ports: Next.js on 3000, Vite on 5173, Express on 8080, PostgreSQL on 5432 and Redis on 6379, each with its project name.">
+  </div>
+</div></header>
+
+<section class="problem" aria-labelledby="problem-title"><div class="wrap">
+  <div class="term" role="img" aria-label="A terminal showing an EADDRINUSE error for port 3000">
+    <div class="bar"><i></i><i></i><i></i></div>
+<pre><span class="p">~/launchbuddy $</span> npm run dev
+<span class="e">Error: listen EADDRINUSE: address already in use :::3000</span>
+
+<span class="p">~/launchbuddy $</span> lsof -i :3000
+COMMAND   PID  USER  FD  TYPE  NODE NAME
+node    48213  you   23u IPv6  TCP  *:hbci (LISTEN)
+
+<span class="p">~/launchbuddy $</span> kill 48213   <span class="d"># …which project was that?</span></pre>
+  </div>
+  <div>
+    <h2 id="problem-title">You shouldn't need <code>lsof</code> to find out what's on port 3000.</h2>
+    <p>A dev server you forgot about, a closed terminal that left Node running, a Docker container from last week. DevPort shows you all of it, names the project, and lets you stop it without guessing at a PID.</p>
+  </div>
+</div></section>
+
+<section id="features" aria-labelledby="features-title"><div class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">Features</span>
+    <h2 id="features-title">Everything running on localhost, in one place</h2>
+    <p>Click the plug in your menu bar, or press <code>⌥⌘P</code> from anywhere.</p>
+  </div>
+
+  <div class="feature">
+    <div class="text">
+      <h3>Every port, with the project behind it</h3>
+      <p>DevPort reads open ports straight from macOS and matches each one to its process, folder and framework. You see <code>3000 · Next.js · launchbuddy</code>, not <code>node 48213</code>.</p>
+      <ul>
+        <li>Detects Next.js, Vite, Rails, Django, FastAPI, Express, Postgres, Redis and more</li>
+        <li>Shows CPU, memory and how long each server has been up</li>
+        <li>Flags dev servers still running after you closed their terminal</li>
+      </ul>
+    </div>
+    <div class="pic"><img src="/assets/detail-3000-hero.png" width="446" height="606" loading="lazy" alt="Port 3000 opened in DevPort: Next.js, the launchbuddy project, its process, memory and uptime."></div>
+  </div>
+
+  <div class="feature flip">
+    <div class="text">
+      <h3>“Why is port 3000 busy?” answered</h3>
+      <p>Open any port to see exactly why DevPort thinks it belongs to that project, whether it's reachable from your network or the internet, and whether it's safe to stop.</p>
+      <ul>
+        <li>Warns when a port is exposed through ngrok or Cloudflare</li>
+        <li>Spots two processes fighting over one port, including the IPv4/IPv6 split</li>
+        <li>Opens the project in Finder, VS Code, Cursor, Zed or your terminal</li>
+      </ul>
+    </div>
+    <div class="pic"><img src="/assets/detail-3000-why.png" width="446" height="606" loading="lazy" alt="Port 3000 detail: public URL warning, local domain, project path, command and a checklist explaining why the port is occupied."></div>
+  </div>
+
+  <div class="feature">
+    <div class="text">
+      <h3>Stop or restart safely, in one click</h3>
+      <p>Stop sends a polite signal first and offers Force Quit only if the process ignores it. Restart runs your original command again, like <code>npm run dev</code>, in the right folder.</p>
+      <ul>
+        <li>macOS system processes are protected from accidental stops</li>
+        <li>Checks the process is still the same one before sending any signal</li>
+      </ul>
+    </div>
+    <div class="pic"><img src="/assets/stopped-toast.png" width="446" height="606" loading="lazy" alt="DevPort confirming that a server was stopped and its port is free."></div>
+  </div>
+
+  <div class="feature flip">
+    <div class="text">
+      <h3>Start and stop whole projects</h3>
+      <p>Stacks remember the services each project needs: frontend, API, database, cache. Start everything in the right order, or shut it all down when you switch projects.</p>
+    </div>
+    <div class="pic"><img src="/assets/stacks.png" width="446" height="606" loading="lazy" alt="The Stacks tab showing two projects with their frontend, API, database and cache services."></div>
+  </div>
+
+  <div class="feature">
+    <div class="text">
+      <h3>Containers, tunnels and local domains too</h3>
+      <p>Docker Desktop, OrbStack, Colima and Podman containers show up with their mapped ports. So do ngrok and Cloudflare tunnels, SSH and kubectl port-forwards, and <code>.test</code> domains.</p>
+    </div>
+    <div class="pic"><img src="/assets/network.png" width="446" height="606" loading="lazy" alt="The Network tab listing a public ngrok tunnel, an SSH forward, local domains and Docker containers."></div>
+  </div>
+</div></section>
+
+<section aria-label="More features" style="padding-top:0"><div class="wrap">
+  <div class="grid">
+    <div><span class="k">~2 ms</span><h3>Native and fast</h3><p>Written in Swift. Reads ports directly from macOS, with no <code>lsof</code> calls, so refreshing every 2 seconds costs nothing.</p></div>
+    <div><span class="k">private</span><h3>Nothing leaves your Mac</h3><p>No account, no analytics. Your process list is never sent anywhere. The only network request is the licence check.</p></div>
+    <div><span class="k">⌥⌘P</span><h3>Keyboard first</h3><p>Open it from anywhere, move with the arrow keys, press Return to open a port and Esc to go back.</p></div>
+    <div><span class="k">alerts</span><h3>Conflict notifications</h3><p>Get a notification when two processes start fighting over the same port.</p></div>
+    <div><span class="k">menu bar</span><h3>Count at a glance</h3><p>The menu bar shows how many dev servers are running, with a warning sign when there's a conflict.</p></div>
+    <div><span class="k">login</span><h3>Starts with your Mac</h3><p>Turn on Launch at login and DevPort is always one click away.</p></div>
+  </div>
+</div></section>
+
+<section id="how" aria-labelledby="how-title"><div class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">How it works</span>
+    <h2 id="how-title">Up and running in a minute</h2>
+  </div>
+  <div class="steps">
+    <div class="step"><span class="n">1</span><h3>Buy DevPort</h3><p>Pay $3.50 once through our checkout. Your licence key is emailed to you and shown on the next page.</p></div>
+    <div class="step"><span class="n">2</span><h3>Download and install</h3><p>Open <code>DevPort.dmg</code> and drag DevPort into Applications. It runs on Apple silicon and Intel Macs.</p></div>
+    <div class="step"><span class="n">3</span><h3>Activate</h3><p>Click the plug in your menu bar and paste your key. DevPort unlocks and scans your Mac straight away.</p></div>
+  </div>
+</div></section>
+
+<section id="pricing" class="pricing" aria-labelledby="pricing-title"><div class="wrap">
+  <div class="section-head" style="margin-bottom:0">
+    <span class="eyebrow">Pricing</span>
+    <h2 id="pricing-title">One price. No subscription.</h2>
+    <p>Pay once and keep DevPort. Every feature is included, and one licence covers two of your Macs.</p>
+  </div>
+  <div class="price-card">
+    <div class="top"><img src="/assets/icon.png" alt=""><div><strong style="font:700 20px var(--display)">DevPort</strong><div style="color:var(--ink-3);font-size:14px">Mac menu-bar app</div></div></div>
+    <div class="amount">$3.50<small>one-time</small></div>
+    <ul>
+      <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>All features: ports, stacks, containers and tunnels</li>
+      <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>Use it on 2 Macs</li>
+      <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>Apple silicon and Intel, macOS 13 or later</li>
+      <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3 3 7-7"/></svg>Works offline once activated</li>
+    </ul>
+    <a class="btn btn-primary" data-buy href="https://checkout.dodopayments.com/buy/pdt_0NoQZXsQrLCafVXr53l5H">Buy DevPort for $3.50</a>
+    <p class="fine">Secure checkout by Dodo Payments. Sales tax is added where it applies.</p>
+  </div>
+</div></section>
+
+<section id="faq" aria-labelledby="faq-title"><div class="wrap">
+  <div class="section-head">
+    <span class="eyebrow">FAQ</span>
+    <h2 id="faq-title">Questions</h2>
+  </div>
+  <div class="faq">
+    <details><summary>Do I need a licence key to use DevPort?</summary><p>Yes. Anyone can download the app, but it only starts working after you activate it with a key. You get the key by email and on the thank-you page right after you pay.</p></details>
+    <details><summary>Does it work on Intel Macs?</summary><p>Yes. The download is a single universal app that runs natively on both Apple silicon (M1 and later) and Intel Macs with macOS 13 Ventura or later.</p></details>
+    <details><summary>How many Macs can I use it on?</summary><p>Two. If you replace a Mac, open DevPort Settings and choose Deactivate this Mac to free the seat, then activate on the new one.</p></details>
+    <details><summary>Does DevPort send my data anywhere?</summary><p>No. Process and port information stays on your Mac. The only network request DevPort makes is to our payment provider to check your licence.</p></details>
+    <details><summary>Does it work offline?</summary><p>Yes. After activation DevPort keeps working offline. It rechecks the licence quietly when you're online, and only needs to reach the server once every 30 days.</p></details>
+    <details><summary>Is it safe to stop processes with it?</summary><p>DevPort refuses to stop macOS system processes, asks the process to quit politely before offering Force Quit, and checks it's still the same process before sending any signal.</p></details>
+    <details><summary>I lost my licence key.</summary><p>Search your inbox for the receipt from Dodo Payments. If you can't find it, email <a href="mailto:technophilic000@gmail.com">technophilic000@gmail.com</a> with the address you paid with.</p></details>
+    <details><summary>Can I get a refund?</summary><p>Yes, within 14 days if DevPort doesn't work for you. See the <a href="/refunds">refund policy</a>.</p></details>
+  </div>
+</div></section>
+
+<section class="final" aria-labelledby="final-title"><div class="wrap">
+  <div class="box">
+    <img src="/assets/icon.png" alt="">
+    <h2 id="final-title">Stop hunting for PIDs.</h2>
+    <p>See every port on your Mac for $3.50, once.</p>
+    <a class="btn btn-primary" data-buy href="https://checkout.dodopayments.com/buy/pdt_0NoQZXsQrLCafVXr53l5H">Buy DevPort <span class="price">$3.50</span></a>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <span>© 2026 DevPort</span>
+  <div class="links">
+    <a href="/DevPort.dmg" download>Download</a>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="/refunds">Refunds</a>
+    <a href="mailto:technophilic000@gmail.com">technophilic000@gmail.com</a>
+  </div>
+</div></footer>
+
+<script>
+// Checkout returns to /thanks, which shows the licence key and the download.
+(function () {
+  if (!/^https?:$/.test(location.protocol)) return;
+  var back = location.origin + "/thanks";
+  document.querySelectorAll("a[data-buy]").forEach(function (a) {
+    var url = new URL(a.href);
+    url.searchParams.set("quantity", "1");
+    url.searchParams.set("redirect_url", back);
+    a.href = url.toString();
+  });
+})();
+var nav = document.getElementById("nav");
+addEventListener("scroll", function () { nav.classList.toggle("scrolled", scrollY > 8); }, { passive: true });
+</script>
+</body>
+</html>

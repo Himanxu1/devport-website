@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0E1A">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="/styles.css">
+<title>Thanks for buying DevPort</title>
+<meta name="robots" content="noindex">
+</head>
+<body>
+<nav class="scrolled"><div class="wrap">
+  <a class="brand" href="/"><img src="/assets/icon.png" alt="">DevPort</a>
+  <div class="links"><a href="/#features">Features</a><a href="/#pricing">Pricing</a><a href="/#faq">FAQ</a></div>
+</div></nav>
+<main class="page"><div class="wrap">
+  <div id="ok">
+    <span class="eyebrow">Payment received</span>
+    <h1 style="margin-top:12px">Thanks for buying DevPort.</h1>
+    <p>Your licence key is below and in the receipt email from Dodo Payments. Keep that email: it's how you activate DevPort on a second Mac.</p>
+
+    <div class="card" id="key-card" hidden>
+      <h2>Your licence key</h2>
+      <div class="keybox"><code id="key"></code><button class="btn btn-ghost btn-sm" id="copy" type="button">Copy</button></div>
+    </div>
+    <div class="card" id="nokey-card">
+      <h2>Your licence key</h2>
+      <p>Check your inbox for the email from Dodo Payments. It usually arrives within a minute. Look in spam too.</p>
+    </div>
+
+    <div class="card">
+      <h2>Install and activate</h2>
+      <ol>
+        <li><a href="/DevPort.dmg" download>Download DevPort.dmg</a> (Apple silicon and Intel, macOS 13 or later).</li>
+        <li>Open it and drag <strong>DevPort</strong> into <strong>Applications</strong>, then open DevPort from Applications.</li>
+        <li>DevPort appears as a plug in your menu bar and asks for your key. Paste it and click Activate.</li>
+      </ol>
+      <div class="cta-row" style="margin-top:24px">
+        <a class="btn btn-primary" href="/DevPort.dmg" download>Download DevPort</a>
+        <a class="btn btn-ghost" id="open-app" href="devport://activated" hidden>Already installed? Activate now</a>
+      </div>
+    </div>
+    <p style="margin-top:28px">Problems? Email <a href="mailto:technophilic000@gmail.com">technophilic000@gmail.com</a> and include the email address you paid with.</p>
+  </div>
+
+  <div id="failed" hidden>
+    <span class="eyebrow">Payment not completed</span>
+    <h1 style="margin-top:12px">Your payment didn't go through.</h1>
+    <p>You haven't been charged. You can <a href="/#pricing">try again</a>, or email <a href="mailto:technophilic000@gmail.com">technophilic000@gmail.com</a> if the problem continues.</p>
+  </div>
+</div></main>
+<footer><div class="wrap">
+  <span>© 2026 DevPort</span>
+  <div class="links"><a href="/">Home</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/refunds">Refunds</a><a href="mailto:technophilic000@gmail.com">technophilic000@gmail.com</a></div>
+</div></footer>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var status = (q.get("status") || "").toLowerCase();
+  if (status === "failed" || status === "cancelled") {
+    document.getElementById("ok").hidden = true;
+    document.getElementById("failed").hidden = false;
+    return;
+  }
+  // A multi-seat purchase returns several comma-separated keys; show them all.
+  var key = (q.get("license_key") || "").trim();
+  if (!key) return;
+  document.getElementById("key").textContent = key.split(",").join("\n");
+  document.getElementById("key-card").hidden = false;
+  document.getElementById("nokey-card").hidden = true;
+  var open = document.getElementById("open-app");
+  open.href = "devport://activated?license_key=" + encodeURIComponent(key.split(",")[0]);
+  open.hidden = false;
+  var btn = document.getElementById("copy");
+  btn.addEventListener("click", function () {
+    navigator.clipboard.writeText(key.split(",")[0]).then(function () {
+      btn.textContent = "Copied"; setTimeout(function () { btn.textContent = "Copy"; }, 1500);
+    }, function () {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById("key"));
+      var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    });
+  });
+})();
+</script>
+</body>
+</html>
