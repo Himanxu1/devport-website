@@ -11,6 +11,9 @@
 <link rel="stylesheet" href="/styles.css">
 <title>Thanks for buying DevPort</title>
 <meta name="robots" content="noindex">
+<!-- Vercel Web Analytics (cookieless). Plain-HTML equivalent of <Analytics /> from @vercel/analytics. -->
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
 <nav class="scrolled"><div class="wrap">
@@ -59,7 +62,15 @@
 </div></footer>
 <script>
 (function () {
+  // Dodo appends the licence key and email to this URL. Keep them for this tab
+  // (so a refresh still shows the key), then remove them from the address bar
+  // before the deferred analytics script runs, so they are never recorded.
   var q = new URLSearchParams(location.search);
+  try {
+    if (location.search) sessionStorage.setItem("devport-return", location.search);
+    else q = new URLSearchParams(sessionStorage.getItem("devport-return") || "");
+  } catch (e) {}
+  if (location.search) history.replaceState(null, "", location.pathname);
   var status = (q.get("status") || "").toLowerCase();
   if (status === "failed" || status === "cancelled") {
     document.getElementById("ok").hidden = true;
