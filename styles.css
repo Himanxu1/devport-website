@@ -115,6 +115,9 @@ section{padding-block:80px}
 .price-card li{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:15.5px;color:var(--ink-2)}
 .price-card li svg{margin-top:4px;color:var(--green)}
 .price-card .btn{width:100%}
+.card-ctas{display:grid;gap:10px}
+.btn .apple{margin-top:-2px}
+.btn-ghost .price{border-left-color:var(--rule-2)}
 .price-card .fine{font-size:13px;color:var(--ink-3);text-align:center}
 
 /* faq */
